@@ -1,21 +1,24 @@
 import React from 'react';
 
 function PopupWithForm(props) {
+
+  const { isOpen, name, title, onClose, children, submitText } = props;
+
   return (
     <>
-      <section className={`popup popup_type_${props.name}, ${props.isOpen ? 'popup_visible' : ''}`} >
+      <section className={`popup popup_type_${name}, ${isOpen && 'popup_visible'}`} >
         <div className="popup__container">
           <button
             aria-label="exit"
             type="button"
             className="popup__exit-button"
-            onClick={props.onClose}
+            onClick={onClose}
           />
-          <form className={`popup__form popup__${props.name}-form`}>
-            <h2 className="popup__title">{props.title}</h2>
-            {props.children}
+          <form className={`popup__form popup__${name}-form`}>
+            <h2 className="popup__title">{title}</h2>
+            {children}
             <button type="submit" className="popup__submit-button">
-              {props.submitText}
+              {submitText}
             </button>
           </form>
         </div>

@@ -1,34 +1,37 @@
+import React from "react";
+
 function Card(props) {
 
+  const { onCardClick, card } = props;
+
   const handleClick = () => {
-    props.onCardClick(props.card);
-   // console.log(props.card._id)
+    onCardClick(card);
   }
 
   return (
-    <>
-      <article className="card" key={props.card._id}>
+    <React.Fragment>
+      <article className="card">
         <button
           aria-label="delete"
           type="button"
           className="card__delete-button" />
         <img
-          src={props.card.link}
-          alt={props.card.name}
+          src={card.link}
+          alt={card.name}
           className="card__image"
           onClick={handleClick} />
         <div className="card__inner">
-          <h2 className="card__title">{props.card.name}</h2>
+          <h2 className="card__title">{card.name}</h2>
           <div className="card__likes-container">
             <button
               aria-label="like"
               type="button"
               className="card__like-button" />
-            <span className="card__likes-count">{props.card.likes.length}</span>
+            <span className="card__likes-count">{card.likes.length}</span>
           </div>
         </div>
       </article>
-    </>
+    </React.Fragment>
   )
 }
 
