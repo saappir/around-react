@@ -3,8 +3,13 @@ import '../index.css';
 import Header from "./Header.js";
 import Main from "./Main.js"
 import Footer from "./Footer.js"
-import api from "../utils/api";
+import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup ";
+import AddPlacePopup from "./AddPlacePopup ";
 
 function App() {
 
@@ -60,7 +65,7 @@ function App() {
       .catch(error => console.error('update avatar error', error))
   }
 
-  const handleAddPlaceSubmit = (data) => {
+  const handleAddPlace = (data) => {
     api.createCard(data)
       .then((newCard) => {
         setCardsArray([newCard, ...cards])
@@ -100,20 +105,18 @@ function App() {
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           onCardClick={handleCardClick}
-          isEditProfilePopupOpen={isEditProfilePopupOpen}
-          isAddPlacePopupOpen={isAddPlacePopupOpen}
-          isEditAvatarPopupOpen={isEditAvatarPopupOpen}
-          isImagePopupOpen={isImagePopupOpen}
-          onUpdateUser={handleUpdateUser}
-          onUpdateAvatar={handleUpdateAvatar}
-          onAddPlace={handleAddPlaceSubmit}
-          card={selectedCard}
           closeAllPopups={closeAllPopups}
           handleCardLike={handleCardLike}
           handleCardDelete={handleCardDelete}
           cards={cards}
           currentUser={currentUser}
         />
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
+        <PopupWithForm name="delete" title="Are you sure?" submitText="Yes" onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+
         <Footer />
       </div>
     </CurrentUserContext.Provider>
