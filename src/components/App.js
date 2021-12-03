@@ -3,7 +3,7 @@ import '../index.css';
 import Header from "./Header.js";
 import Main from "./Main.js"
 import Footer from "./Footer.js"
-import { api } from "../utils/api";
+import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
