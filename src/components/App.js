@@ -27,7 +27,7 @@ function App() {
     api.getInitialCards()
       .then(setCardsArray)
       .catch(error => console.error('initial cards error', error))
-  }, [cards]);
+  }, []);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true)
