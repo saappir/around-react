@@ -2,7 +2,7 @@ import React from 'react';
 
 function PopupWithForm(props) {
 
-  const { isOpen, name, title, onClose, children, submitText } = props;
+  const { isOpen, name, title, onClose, children, submitText, onSubmit } = props;
 
   return (
     <>
@@ -14,7 +14,7 @@ function PopupWithForm(props) {
             className="popup__exit-button"
             onClick={onClose}
           />
-          <form className={`popup__form popup__${name}-form`}>
+          <form className={`popup__form popup__${name}-form`} onSubmit={onSubmit}>
             <h2 className="popup__title">{title}</h2>
             {children}
             <button type="submit" className="popup__submit-button">
