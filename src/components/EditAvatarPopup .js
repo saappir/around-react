@@ -9,7 +9,7 @@ function EditAvatarPopup(props) {
   const [newAvatar, setNewAvatar] = React.useState()
 
   function handleInputImageChange(e) {
-    setNewAvatar(e.target.value)
+    setNewAvatar(imageInput)
   }
 
   function handleSubmit(e) {

@@ -62,7 +62,7 @@ class Api {
   }
 }
 
- const api = new Api({
+const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
     authorization: "777d758a-9062-4c9b-9afe-60fcbfab24e6",
