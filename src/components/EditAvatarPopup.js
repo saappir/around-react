@@ -6,16 +6,11 @@ function EditAvatarPopup(props) {
   const { isOpen, onClose, onUpdateAvatar } = props;
 
   const imageInput = React.useRef('');
-  const [newAvatar, setNewAvatar] = React.useState('');
-
-  function handleInputImageChange(e) {
-    setNewAvatar(imageInput)
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar({
-      avatar: newAvatar
+      avatar: imageInput.current.value
     });
   }
 
@@ -25,8 +20,8 @@ function EditAvatarPopup(props) {
       <label className="popup__input-label">
         <input className="popup__input popup__input_content_profile-image" type="url" name="link" id="input-avatar"
           placeholder="Image link" required
-          //  value=""
-          onChange={handleInputImageChange} ref={imageInput} />
+            //  onChange={handleInputImageChange}
+           ref={imageInput} />
         <span className="popup__input-error input-avatar-error" />
       </label>
     </PopupWithForm>

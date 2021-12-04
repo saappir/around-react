@@ -1,27 +1,27 @@
-const customFetch = (baseUrl, headers) =>
-  fetch(baseUrl, headers)
-    .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
-
 class Api {
   constructor({ baseUrl, headers }) {
     this._headers = headers;
     this._baseUrl = baseUrl;
   }
 
+  _customFetch = (baseUrl, headers) =>
+  fetch(baseUrl, headers)
+    .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
+
   getInitialCards() {
-    return customFetch(`${this._baseUrl}/cards`, {
+    return this._customFetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
   }
 
   getUserinfo() {
-    return customFetch(`${this._baseUrl}/users/me`, {
+    return this._customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
   }
 
   updateUserInfo(data) {
-    return customFetch(`${this._baseUrl}/users/me`, {
+    return this._customFetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: 'PATCH',
       body: JSON.stringify({
@@ -32,7 +32,7 @@ class Api {
   }
 
   createCard(data) {
-    return customFetch(`${this._baseUrl}/cards`, {
+    return this._customFetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: 'POST',
       body: JSON.stringify(data)
@@ -40,24 +40,24 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return customFetch(`${this._baseUrl}/cards/${cardId}`, {
+    return this._customFetch(`${this._baseUrl}/cards/${cardId}`, {
       headers: this._headers,
       method: 'DELETE'
     })
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    return customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return this._customFetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
       method: isLiked ? 'PUT' : 'DELETE'
     })
   }
 
-  setUserAvatar(avatar) {
-    return customFetch(`${this._baseUrl}/users/me/avatar`, {
+  setUserAvatar({avatar}) {
+    return this._customFetch(`${this._baseUrl}/users/me/avatar`, {
       headers: this._headers,
       method: 'PATCH',
-      body: JSON.stringify(avatar)
+      body: JSON.stringify({avatar})
     })
   }
 }
