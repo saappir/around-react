@@ -30,31 +30,29 @@ function Card(props) {
   }
 
   return (
-    <React.Fragment>
-      <article className="card">
-        <button
-          aria-label="delete"
-          type="button"
-          className={cardDeleteButtonClassName}
-          onClick={handleDeleteClick} />
-        <img
-          src={card.link}
-          alt={card.name}
-          className="card__image"
-          onClick={handleClick} />
-        <div className="card__inner">
-          <h2 className="card__title">{card.name}</h2>
-          <div className="card__likes-container">
-            <button
-              aria-label="like"
-              type="button"
-              className={cardLikeButtonClassName}
-              onClick={handleCardLike} />
-            <span className="card__likes-count">{card.likes.length}</span>
-          </div>
+    <article className="card">
+      <button
+        aria-label="delete"
+        type="button"
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick} />
+      <img
+        src={card.link}
+        alt={card.name}
+        className="card__image"
+        onClick={handleClick} />
+      <div className="card__inner">
+        <h2 className="card__title">{card.name}</h2>
+        <div className="card__likes-container">
+          <button
+            aria-label="like"
+            type="button"
+            className={cardLikeButtonClassName}
+            onClick={handleCardLike} />
+          <span className="card__likes-count">{card.likes.length}</span>
         </div>
-      </article>
-    </React.Fragment>
+      </div>
+    </article>
   )
 }
 
